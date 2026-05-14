@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumora — Ton coucher de soleil personnel</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#0A0805;color:#F0E8D8;font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;cursor:none}
+
+/* CURSOR — desktop only */
+@media(hover:hover){
+  #cursor-dot{position:fixed;width:6px;height:6px;background:#E8A250;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+  #cursor-ring{position:fixed;width:30px;height:30px;border:1px solid rgba(232,162,80,0.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%)}
+}
+
+/* PARTICLES */
+#stars-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(10,8,5,0.8);backdrop-filter:blur(16px);border-bottom:1px solid rgba(232,162,80,0.08)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:1.3rem;letter-spacing:0.3em;color:#E8A250;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:1px}
+.nav-links{display:flex;align-items:center;gap:2rem}
+.nav-links a{color:#F0E8D8;text-decoration:none;font-size:.82rem;font-weight:300;letter-spacing:.05em;opacity:.7;transition:opacity .2s,color .2s}
+.nav-links a:hover{opacity:1;color:#E8A250}
+.nav-cta{border:1px solid #E8A250;color:#E8A250;padding:.4rem 1.1rem;font-size:.82rem;font-weight:300;letter-spacing:.08em;background:transparent;cursor:none;text-decoration:none;transition:background .2s,color .2s}
+.nav-cta:hover{background:#E8A250;color:#0A0805}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:none;padding:4px}
+.nav-hamburger span{width:22px;height:1px;background:#E8A250;display:block;transition:transform .3s}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(10,8,5,0.97);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:#F0E8D8;text-decoration:none;letter-spacing:.1em;transition:color .2s}
+.mobile-menu a:hover{color:#E8A250}
+.mobile-menu .close-btn{position:absolute;top:1.5rem;right:2rem;font-size:1.5rem;color:#E8A250;cursor:none;background:none;border:none}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 5rem;position:relative;z-index:1}
+.hero-eyebrow{font-size:.7rem;letter-spacing:.28em;color:#E8A250;opacity:.8;margin-bottom:1.5rem;text-transform:uppercase}
+.hero-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(3rem,8vw,6.5rem);line-height:1.02;margin-bottom:1.2rem}
+.hero-title em{font-style:italic;color:#E8A250}
+.hero-subtitle{max-width:440px;margin:0 auto 2.5rem;font-size:.95rem;line-height:1.8;opacity:.65}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:4rem}
+.btn-gold{display:inline-flex;align-items:center;gap:.5rem;background:#E8A250;color:#0A0805;padding:.75rem 2rem;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:500;letter-spacing:.06em;text-decoration:none;transition:background .2s,transform .15s;cursor:none}
+.btn-gold:hover{background:#F5C87A;transform:translateY(-2px)}
+.btn-outline{display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(232,162,80,.5);color:#E8A250;padding:.75rem 2rem;font-size:.88rem;font-weight:300;letter-spacing:.06em;text-decoration:none;transition:background .2s,color .2s;cursor:none}
+.btn-outline:hover{background:#E8A250;color:#0A0805}
+
+/* PHOTO FRAME */
+.photo-frame{position:relative;overflow:hidden;border:1px solid rgba(232,162,80,0.12)}
+.photo-frame img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.photo-frame:hover img{transform:scale(1.03)}
+.hero-photo-frame{max-width:860px;width:100%;margin:0 auto;height:clamp(300px,50vw,520px)}
+
+/* SECTIONS */
+section{position:relative;z-index:1}
+.container{max-width:1100px;margin:0 auto;padding:0 2rem}
+.section-pad{padding:6rem 0}
+.section-label{font-size:.7rem;letter-spacing:.22em;color:#E8A250;text-transform:uppercase;opacity:.75;margin-bottom:.7rem;display:block}
+.section-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2rem,4vw,2.8rem);line-height:1.15;margin-bottom:1rem}
+.section-title em{font-style:italic;color:#E8A250}
+.section-header{text-align:center;margin-bottom:3.5rem}
+
+/* PRODUIT */
+#produit{background:#0D0A06}
+.produit-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.produit-photo-frame{height:clamp(350px,45vw,520px)}
+.produit-tag{position:absolute;top:1rem;left:1rem;font-size:.65rem;letter-spacing:.15em;color:#E8A250;border:1px solid rgba(232,162,80,.3);padding:.25rem .7rem;text-transform:uppercase;background:rgba(13,10,6,.7);backdrop-filter:blur(4px)}
+.product-desc{font-size:.9rem;line-height:1.85;opacity:.62;margin-bottom:2rem}
+.specs-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(232,162,80,.1);border:1px solid rgba(232,162,80,.1);margin-bottom:1.8rem}
+.spec-item{background:#0D0A06;padding:.85rem;text-align:center}
+.spec-value{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:#E8A250;display:block}
+.spec-label{font-size:.68rem;opacity:.42;letter-spacing:.05em}
+.price-row{display:flex;align-items:baseline;gap:.6rem;margin-bottom:1.5rem}
+.price-amount{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300}
+.price-free{font-size:.78rem;opacity:.42}
+
+/* BIENFAITS */
+#bienfaits{background:#0A0805}
+.benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid rgba(232,162,80,.08)}
+.benefit-item{padding:1.8rem;border:1px solid rgba(232,162,80,.06);transition:background .25s;cursor:default}
+.benefit-item:hover{background:rgba(232,162,80,.03)}
+.benefit-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:rgba(232,162,80,.15);display:block;margin-bottom:.7rem}
+.benefit-title{font-size:.95rem;font-weight:500;margin-bottom:.4rem}
+.benefit-desc{font-size:.82rem;line-height:1.75;opacity:.5}
+
+/* COULEURS */
+#couleurs{background:#0D0A06}
+.colors-intro{max-width:580px;margin:0 auto 3.5rem;text-align:center}
+.colors-intro p{font-size:.92rem;line-height:1.8;opacity:.6;margin-top:.8rem}
+.colors-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.color-card{position:relative;overflow:hidden}
+.color-card .photo-frame{height:clamp(240px,30vw,380px)}
+.color-badge{position:absolute;bottom:1rem;left:1rem;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .8rem;border:1px solid rgba(255,255,255,.2);background:rgba(10,8,5,.6);backdrop-filter:blur(4px);color:#F0E8D8}
+
+/* SCIENCE — stats visuelles, sans graphique */
+#science{background:#0A0805}
+.science-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.stats-big{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.stat-big{text-align:center;padding:2rem 1rem;border:1px solid rgba(232,162,80,.1);transition:border-color .2s}
+.stat-big:hover{border-color:rgba(232,162,80,.35)}
+.stat-big-value{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:300;color:#E8A250;display:block;line-height:1}
+.stat-big-label{font-size:.78rem;line-height:1.55;opacity:.5;margin-top:.5rem;display:block}
+.science-points{display:flex;flex-direction:column;gap:1.5rem;margin-top:2rem}
+.science-point{display:flex;gap:1rem;align-items:flex-start}
+.science-icon{width:34px;height:34px;min-width:34px;border:1px solid rgba(232,162,80,.2);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.science-point h4{font-size:.88rem;font-weight:500;margin-bottom:.3rem}
+.science-point p{font-size:.8rem;opacity:.5;line-height:1.65}
+
+/* AVIS */
+#avis{background:#0D0A06}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.review-card{border:1px solid rgba(232,162,80,.08);padding:1.8rem;transition:border-color .2s,transform .2s}
+.review-card:hover{border-color:rgba(232,162,80,.35);transform:translateY(-3px)}
+.stars{color:#E8A250;font-size:.85rem;margin-bottom:.8rem;letter-spacing:.1em}
+.review-quote-mark{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:rgba(232,162,80,.15);line-height:1;margin-bottom:.3rem}
+.review-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:1rem;line-height:1.7;opacity:.82;margin-bottom:1rem}
+.review-author{font-size:.75rem;opacity:.38;letter-spacing:.05em}
+.review-verified{font-size:.68rem;color:#E8A250;opacity:.6;margin-top:.3rem;letter-spacing:.05em}
+
+/* FAQ */
+#faq{background:#0A0805}
+.faq-inner{max-width:680px;margin:0 auto}
+.faq-item{border-bottom:1px solid rgba(232,162,80,.08)}
+.faq-question{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 0;cursor:none;font-size:.92rem;font-weight:400;transition:color .2s;gap:1rem}
+.faq-question:hover{color:#E8A250}
+.faq-icon{font-size:1.1rem;color:#E8A250;transition:transform .3s;flex-shrink:0}
+.faq-icon.open{transform:rotate(45deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease;font-size:.85rem;line-height:1.85;opacity:.55}
+.faq-answer.open{max-height:220px;padding-bottom:1.2rem}
+
+/* CTA FINAL */
+#cta-final{background:#0D0A06;padding:6rem 2rem;text-align:center;position:relative;z-index:1}
+.cta-sun-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(255,140,30,.08) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.cta-inner{position:relative;z-index:2;max-width:600px;margin:0 auto}
+.cta-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2rem,4vw,3rem);line-height:1.18;margin-bottom:1rem}
+.cta-title em{font-style:italic;color:#E8A250}
+.cta-price{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:#E8A250;display:block;margin-bottom:2rem}
+.guarantees{display:flex;gap:2rem;margin-top:2rem;opacity:.45;font-size:.75rem;letter-spacing:.07em;flex-wrap:wrap;justify-content:center}
+
+/* FOOTER */
+footer{background:#0A0805;border-top:1px solid rgba(232,162,80,.07);padding:1.8rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;position:relative;z-index:1}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-weight:300;letter-spacing:.3em;color:#E8A250;font-size:1rem}
+.footer-copy{font-size:.73rem;opacity:.28;letter-spacing:.04em}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* DIVIDER */
+.divider{width:40px;height:1px;background:rgba(232,162,80,.3);margin:1.2rem auto}
+
+/* ======================== MOBILE ======================== */
+@media(max-width:768px){
+  nav{padding:.9rem 1.5rem}
+  .nav-links{display:none}
+  .nav-hamburger{display:flex}
+  .nav-cta{display:none}
+
+  #hero{padding:7rem 1.5rem 4rem}
+  .hero-photo-frame{height:260px}
+  .hero-btns{flex-direction:column;align-items:center}
+
+  .produit-grid{grid-template-columns:1fr;gap:2.5rem}
+  .produit-photo-frame{height:280px}
+
+  .benefits-grid{grid-template-columns:1fr 1fr}
+
+  .colors-grid{grid-template-columns:1fr;gap:1rem}
+  .color-card .photo-frame{height:260px}
+
+  .science-grid{grid-template-columns:1fr;gap:3rem}
+  .stats-big{grid-template-columns:1fr 1fr;gap:1rem}
+  .stat-big-value{font-size:2.5rem}
+
+  .reviews-grid{grid-template-columns:1fr;gap:1rem}
+
+  .section-pad{padding:4rem 0}
+  .container{padding:0 1.5rem}
+
+  footer{flex-direction:column;text-align:center}
+}
+
+@media(max-width:480px){
+  .benefits-grid{grid-template-columns:1fr}
+  .colors-grid{grid-template-columns:1fr}
+  .hero-title{font-size:2.8rem}
+}
+</style>
+</head>
+<body>
+
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+<canvas id="stars-canvas"></canvas>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-btn" onclick="toggleMenu()">✕</button>
+  <a href="#produit" onclick="toggleMenu()">Produit</a>
+  <a href="#bienfaits" onclick="toggleMenu()">Bienfaits</a>
+  <a href="#couleurs" onclick="toggleMenu()">16 Couleurs</a>
+  <a href="#avis" onclick="toggleMenu()">Avis</a>
+  <a href="https://lumora-8022.myshopify.com" class="btn-gold" style="font-size:1rem;margin-top:1rem">Commander</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo"><span style="font-size:.8rem">☀</span>LUMORA</a>
+  <div class="nav-links">
+    <a href="#produit">Produit</a>
+    <a href="#bienfaits">Bienfaits</a>
+    <a href="#couleurs">16 Couleurs</a>
+    <a href="#avis">Avis</a>
+    <a href="https://lumora-8022.myshopify.com" class="nav-cta">Commander</a>
+  </div>
+  <div class="nav-hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <p class="hero-eyebrow">Bien-être · Lumière · Sérénité</p>
+  <h1 class="hero-title">Ton coucher<br>de <em>soleil</em><br>personnel</h1>
+  <p class="hero-subtitle">Transforme n'importe quelle pièce en sanctuaire de lumière. Retrouve la sérénité chaque soir, sans quitter ton espace.</p>
+  <div class="hero-btns">
+    <a href="https://lumora-8022.myshopify.com" class="btn-gold">Commander — CHF 34.90 →</a>
+    <a href="#produit" class="btn-outline">Découvrir ↓</a>
+  </div>
+  <div class="hero-photo-frame photo-frame reveal">
+    <img src="photo-lecture.png" alt="Lumora — ambiance coucher de soleil">
+  </div>
+</section>
+
+<!-- PRODUIT -->
+<section id="produit" class="section-pad">
+  <div class="container">
+    <div class="produit-grid">
+      <div class="photo-frame produit-photo-frame reveal">
+        <img src="photo-produit.jpeg" alt="Lumora One — lampe coucher de soleil">
+        <span class="produit-tag">Lumora One</span>
+      </div>
+      <div class="reveal">
+        <span class="section-label">La lampe Lumora</span>
+        <h2 class="section-title">16 couleurs.<br><em>Un seul effet.</em></h2>
+        <div class="divider" style="margin:1.2rem 0"></div>
+        <p class="product-desc">Lumora One projette un coucher de soleil enveloppant sur tes murs. 16 teintes au choix, rotation 360°, télécommande incluse. Installe en 30 secondes. Ressens la différence en quelques minutes.</p>
+        <div class="specs-grid">
+          <div class="spec-item"><span class="spec-value">16</span><span class="spec-label">Couleurs</span></div>
+          <div class="spec-item"><span class="spec-value">360°</span><span class="spec-label">Rotation</span></div>
+          <div class="spec-item"><span class="spec-value">5W</span><span class="spec-label">Consommation</span></div>
+          <div class="spec-item"><span class="spec-value">∞</span><span class="spec-label">Ambiances</span></div>
+        </div>
+        <div class="price-row">
+          <span class="price-amount">CHF 34.90</span>
+          <span class="price-free">· Livraison gratuite</span>
+        </div>
+        <a href="https://lumora-8022.myshopify.com" class="btn-gold">Commander maintenant →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BIENFAITS -->
+<section id="bienfaits" class="section-pad">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Pourquoi Lumora</span>
+      <h2 class="section-title">La lumière qui <em>change tout</em></h2>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-item reveal"><span class="benefit-num">01</span><h3 class="benefit-title">Réduit l'anxiété</h3><p class="benefit-desc">Les tonalités chaudes activent la réponse parasympathique et abaissent naturellement le cortisol.</p></div>
+      <div class="benefit-item reveal"><span class="benefit-num">02</span><h3 class="benefit-title">Améliore le sommeil</h3><p class="benefit-desc">La lumière ambrée prépare le cerveau à produire de la mélatonine pour un endormissement naturel.</p></div>
+      <div class="benefit-item reveal"><span class="benefit-num">03</span><h3 class="benefit-title">Crée un rituel</h3><p class="benefit-desc">Un signal visuel quotidien ancre ton cerveau dans une routine de décompression automatique.</p></div>
+      <div class="benefit-item reveal"><span class="benefit-num">04</span><h3 class="benefit-title">Transforme l'espace</h3><p class="benefit-desc">D'une chambre ordinaire à un sanctuaire personnel. La projection redéfinit ton environnement.</p></div>
+      <div class="benefit-item reveal"><span class="benefit-num">05</span><h3 class="benefit-title">Zéro effort</h3><p class="benefit-desc">Pose, branche, allume. Télécommande incluse. Pas de montage, pas de configuration. Immédiat.</p></div>
+      <div class="benefit-item reveal"><span class="benefit-num">06</span><h3 class="benefit-title">Partout chez toi</h3><p class="benefit-desc">Chambre, salon, bureau, méditation. S'adapte à toutes les pièces jusqu'à 25m².</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 16 COULEURS -->
+<section id="couleurs" class="section-pad">
+  <div class="container">
+    <div class="colors-intro reveal">
+      <span class="section-label">16 couleurs disponibles</span>
+      <h2 class="section-title">Une humeur,<br><em>une couleur.</em></h2>
+      <p>Du coucher de soleil chaleureux au bleu apaisant — Lumora s'adapte à chacun de tes états d'âme.</p>
+    </div>
+    <div class="colors-grid">
+      <div class="color-card reveal">
+        <div class="photo-frame" style="height:clamp(240px,30vw,380px)">
+          <img src="photo-produit.jpeg" alt="Lumora — ambiance orange coucher de soleil">
+        </div>
+        <span class="color-badge">🟠 Coucher de soleil</span>
+      </div>
+      <div class="color-card reveal">
+        <div class="photo-frame" style="height:clamp(240px,30vw,380px)">
+          <img src="photo-rouge.png" alt="Lumora — ambiance rouge">
+        </div>
+        <span class="color-badge">🔴 Rouge passion</span>
+      </div>
+      <div class="color-card reveal">
+        <div class="photo-frame" style="height:clamp(240px,30vw,380px)">
+          <img src="photo-vert.png" alt="Lumora — ambiance verte zen">
+        </div>
+        <span class="color-badge">🟢 Vert zen</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCIENCE -->
+<section id="science" class="section-pad">
+  <div class="container">
+    <div class="science-grid">
+      <div class="reveal">
+        <span class="section-label">Les chiffres</span>
+        <h2 class="section-title">Prouvé par<br><em>des milliers</em><br>d'utilisateurs.</h2>
+        <div class="divider" style="margin:1.5rem 0"></div>
+        <div class="stats-big">
+          <div class="stat-big reveal"><span class="stat-big-value">87%</span><span class="stat-big-label">ressentent moins de stress en 7 jours</span></div>
+          <div class="stat-big reveal"><span class="stat-big-value">40%</span><span class="stat-big-label">de réduction du cortisol après 30 min</span></div>
+          <div class="stat-big reveal"><span class="stat-big-value">92%</span><span class="stat-big-label">améliorent leur sommeil en 2 semaines</span></div>
+          <div class="stat-big reveal"><span class="stat-big-value">3x</span><span class="stat-big-label">plus efficace que les apps de relaxation</span></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <span class="section-label">La science derrière</span>
+        <h2 class="section-title">Ce n'est pas<br>de la magie.<br><em>C'est la lumière.</em></h2>
+        <div class="science-points">
+          <div class="science-point">
+            <div class="science-icon">🧠</div>
+            <div><h4>Chromothérapie & cortisol</h4><p>Les longueurs d'onde orange-rouge (590–700nm) inhibent l'axe HPA, réduisant la sécrétion de cortisol et favorisant un état de calme profond.</p></div>
+          </div>
+          <div class="science-point">
+            <div class="science-icon">🌙</div>
+            <div><h4>Mélatonine & sommeil</h4><p>Contrairement aux écrans LED bleutés, la lumière ambrée de Lumora accompagne naturellement la production de mélatonine.</p></div>
+          </div>
+          <div class="science-point">
+            <div class="science-icon">🔄</div>
+            <div><h4>Ancrage comportemental</h4><p>Répété chaque soir, le signal visuel crée un conditionnement : ton corps apprend à se déconnecter dès que la lumière s'allume.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AVIS -->
+<section id="avis" class="section-pad">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Ils ont testé</span>
+      <h2 class="section-title">Ce qu'ils en <em>disent</em></h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <div class="review-quote-mark">"</div>
+        <p class="review-text">J'allumais mon téléphone pour me détendre avant de dormir. Maintenant j'allume Lumora. La différence est incomparable — je m'endors en 10 minutes.</p>
+        <p class="review-author">Camille R. — Paris</p>
+        <p class="review-verified">✓ Achat vérifié</p>
+      </div>
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <div class="review-quote-mark">"</div>
+        <p class="review-text">Sceptique au départ. Aujourd'hui c'est le premier objet que j'allume en rentrant. Ma femme en a commandé une deuxième pour le bureau.</p>
+        <p class="review-author">Thomas K. — Lyon</p>
+        <p class="review-verified">✓ Achat vérifié</p>
+      </div>
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <div class="review-quote-mark">"</div>
+        <p class="review-text">Je fais de la méditation et le manque d'ambiance était un frein. Lumora a transformé ma pratique. Exactement ce qu'il fallait.</p>
+        <p class="review-author">Léa M. — Genève</p>
+        <p class="review-verified">✓ Achat vérifié</p>
+      </div>
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <div class="review-quote-mark">"</div>
+        <p class="review-text">Cadeau pour ma sœur qui avait du mal à dormir. Elle m'a rappelé le lendemain pour me remercier. Résultat immédiat, vraiment bluffant.</p>
+        <p class="review-author">Marc D. — Bruxelles</p>
+        <p class="review-verified">✓ Achat vérifié</p>
+      </div>
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <div class="review-quote-mark">"</div>
+        <p class="review-text">La couleur rouge le soir pour décompresser, le bleu pour méditer le matin. J'utilise au moins 4 couleurs différentes selon mon humeur.</p>
+        <p class="review-author">Sophie L. — Lausanne</p>
+        <p class="review-verified">✓ Achat vérifié</p>
+      </div>
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <div class="review-quote-mark">"</div>
+        <p class="review-text">Prix imbattable pour la qualité. La lumière est douce, la télécommande pratique. Mon appart a l'air d'un spa 5 étoiles maintenant.</p>
+        <p class="review-author">Antoine B. — Bordeaux</p>
+        <p class="review-verified">✓ Achat vérifié</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section-pad">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Questions fréquentes</span>
+      <h2 class="section-title">Tout ce que tu <em>veux savoir</em></h2>
+    </div>
+    <div class="faq-inner">
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Combien de temps pour la livraison ?<span class="faq-icon">+</span></div><div class="faq-answer">Livraison internationale gratuite en 8 à 15 jours ouvrables. Un numéro de suivi te sera envoyé par email dès l'expédition.</div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Comment utiliser la lampe ?<span class="faq-icon">+</span></div><div class="faq-answer">Pose Lumora sur une surface stable, branche le câble USB, allume avec la télécommande. Oriente la tête vers un mur à 1–3 mètres pour une projection optimale.</div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Politique de retour ?<span class="faq-icon">+</span></div><div class="faq-answer">30 jours de garantie satisfait ou remboursé. Si tu n'es pas convaincu, contacte-nous par email et nous organisons le retour sans frais.</div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Pour quelle taille de pièce ?<span class="faq-icon">+</span></div><div class="faq-answer">Lumora est optimale pour des pièces de 10 à 25m². Pour de plus grandes surfaces, oriente la lampe vers un angle de mur pour concentrer la projection.</div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Est-ce une thérapie médicale ?<span class="faq-icon">+</span></div><div class="faq-answer">Lumora est un produit bien-être, pas un dispositif médical. Les effets évoqués sont basés sur des recherches en chromothérapie et ne remplacent pas un avis médical.</div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Quelle prise électrique ?<span class="faq-icon">+</span></div><div class="faq-answer">Lumora fonctionne via câble USB (inclus). Compatible avec n'importe quel chargeur USB 5V ou port USB. Fonctionne partout dans le monde.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta-final">
+  <div class="cta-sun-bg"></div>
+  <div class="cta-inner reveal">
+    <span class="section-label" style="justify-content:center;display:block">Offre limitée</span>
+    <h2 class="cta-title">Offre-toi le coucher<br>de soleil que tu <em>mérites</em></h2>
+    <div class="divider"></div>
+    <span class="cta-price">CHF 34.90</span>
+    <a href="https://lumora-8022.myshopify.com" class="btn-gold" style="font-size:.95rem;padding:.85rem 2.5rem">Commander ma Lumora →</a>
+    <div class="guarantees">
+      <span>🔒 Paiement sécurisé</span>
+      <span>↩ 30j remboursé</span>
+      <span>✈ Livraison gratuite</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">☀ LUMORA</span>
+  <p class="footer-copy">© 2025 Lumora · Bien-être par la lumière · Suisse</p>
+</footer>
+
+<script>
+// CURSOR
+const dot=document.getElementById('cursor-dot');
+const ring=document.getElementById('cursor-ring');
+if(dot&&ring){
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
+  (function animRing(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)})();
+}
+
+// WARM PARTICLES
+const canvas=document.getElementById('stars-canvas');
+const ctx=canvas.getContext('2d');
+let particles=[];
+const WARM=['#E8A250','#F5C87A','#B07830','#FF9640','#F0E8D8'];
+function initP(){
+  canvas.width=window.innerWidth;canvas.height=window.innerHeight;particles=[];
+  for(let i=0;i<140;i++){
+    particles.push({x:Math.random()*canvas.width,oy:Math.random()*canvas.height,size:Math.random()*.9+.2,alpha:Math.random()*.45+.05,spd:Math.random()*.01+.003,dir:Math.random()<.5?1:-1,type:Math.random()<.08?'cross':'dot',color:WARM[Math.floor(Math.random()*WARM.length)]});
+  }
+}
+let sy=0;
+window.addEventListener('scroll',()=>{sy=window.scrollY},{passive:true});
+function drawP(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  const par=sy*.07;
+  particles.forEach(p=>{
+    p.alpha+=p.spd*p.dir;
+    if(p.alpha>.65||p.alpha<.04)p.dir*=-1;
+    const py=(p.oy-par%canvas.height+canvas.height*2)%canvas.height;
+    ctx.globalAlpha=p.alpha;ctx.fillStyle=p.color;ctx.strokeStyle=p.color;
+    if(p.type==='cross'){ctx.lineWidth=p.size*.4;ctx.beginPath();ctx.moveTo(p.x-p.size*2,py);ctx.lineTo(p.x+p.size*2,py);ctx.stroke();ctx.beginPath();ctx.moveTo(p.x,py-p.size*2);ctx.lineTo(p.x,py+p.size*2);ctx.stroke();}
+    else{ctx.beginPath();ctx.arc(p.x,py,p.size,0,Math.PI*2);ctx.fill()}
+  });
+  ctx.globalAlpha=1;requestAnimationFrame(drawP);
+}
+initP();drawP();
+window.addEventListener('resize',initP);
+
+// REVEAL
+const reveals=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.08});
+reveals.forEach(r=>obs.observe(r));
+
+// FAQ
+function toggleFaq(el){
+  const ans=el.nextElementSibling,icon=el.querySelector('.faq-icon'),open=ans.classList.contains('open');
+  document.querySelectorAll('.faq-answer.open').forEach(a=>{a.classList.remove('open');a.previousElementSibling.querySelector('.faq-icon').classList.remove('open')});
+  if(!open){ans.classList.add('open');icon.classList.add('open')}
+}
+
+// MOBILE MENU
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+</script>
+</body>
+</html>
