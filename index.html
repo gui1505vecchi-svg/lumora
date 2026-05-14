@@ -72,9 +72,11 @@ section{position:relative;z-index:1}
 .spec-item{background:#0D0A06;padding:.85rem;text-align:center}
 .spec-value{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:#E8A250;display:block}
 .spec-label{font-size:.68rem;opacity:.42;letter-spacing:.05em}
-.price-row{display:flex;align-items:baseline;gap:.6rem;margin-bottom:1.5rem}
+.price-row{display:flex;align-items:baseline;gap:.6rem;margin-bottom:1.5rem;flex-wrap:wrap}
 .price-amount{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300}
 .price-free{font-size:.78rem;opacity:.42}
+.price-original{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;text-decoration:line-through;opacity:.4;margin-right:.3rem}
+.price-badge{background:#E8A250;color:#0A0805;font-size:.68rem;font-weight:500;padding:.2rem .6rem;letter-spacing:.06em;vertical-align:middle;margin-left:.4rem}
 
 /* BIENFAITS */
 #bienfaits{background:#0A0805}
@@ -187,6 +189,42 @@ footer{background:#0A0805;border-top:1px solid rgba(232,162,80,.07);padding:1.8r
   .colors-grid{grid-template-columns:1fr}
   .hero-title{font-size:2.8rem}
 }
+
+/* POPUP EXIT INTENT */
+#exit-popup{
+  position:fixed;inset:0;z-index:9000;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(10,8,5,.85);backdrop-filter:blur(8px);
+  opacity:0;pointer-events:none;transition:opacity .3s ease;
+}
+#exit-popup.show{opacity:1;pointer-events:all}
+.popup-box{
+  background:#0D0A06;border:1px solid rgba(232,162,80,.25);
+  max-width:460px;width:90%;padding:3rem 2.5rem;text-align:center;
+  position:relative;
+}
+.popup-close{
+  position:absolute;top:1rem;right:1.2rem;
+  font-size:1.2rem;color:rgba(240,232,216,.4);
+  cursor:none;background:none;border:none;transition:color .2s;
+}
+.popup-close:hover{color:#E8A250}
+.popup-sun{font-size:2rem;margin-bottom:1rem;display:block}
+.popup-title{
+  font-family:'Cormorant Garamond',serif;font-weight:300;
+  font-size:1.9rem;line-height:1.15;margin-bottom:.8rem;
+}
+.popup-title em{font-style:italic;color:#E8A250}
+.popup-subtitle{font-size:.88rem;opacity:.6;line-height:1.7;margin-bottom:.5rem}
+.popup-price-row{margin:1.2rem 0}
+.popup-original{font-family:'Cormorant Garamond',serif;font-size:1.1rem;text-decoration:line-through;opacity:.35;margin-right:.4rem}
+.popup-price{font-family:'Cormorant Garamond',serif;font-size:2rem;color:#E8A250}
+.popup-badge{background:#E8A250;color:#0A0805;font-size:.65rem;font-weight:500;padding:.2rem .6rem;letter-spacing:.06em;vertical-align:middle;margin-left:.3rem}
+.popup-timer{font-size:.75rem;opacity:.5;margin-bottom:1.5rem;letter-spacing:.08em}
+.popup-timer span{color:#E8A250;font-weight:500}
+.popup-cta{width:100%;display:block;text-align:center}
+.popup-skip{display:block;margin-top:1rem;font-size:.75rem;opacity:.35;cursor:none;transition:opacity .2s}
+.popup-skip:hover{opacity:.6}
 </style>
 </head>
 <body>
@@ -254,7 +292,7 @@ footer{background:#0A0805;border-top:1px solid rgba(232,162,80,.07);padding:1.8r
           <div class="spec-item"><span class="spec-value">∞</span><span class="spec-label">Ambiances</span></div>
         </div>
         <div class="price-row">
-          <span class="price-amount">CHF 34.90</span>
+          <span class="price-original">CHF 59.90</span><span class="price-amount">CHF 34.90 <span style="font-size:1.2rem;opacity:.5">/ €36.90</span></span><span class="price-badge">-42%</span>
           <span class="price-free">· Livraison gratuite</span>
         </div>
         <a href="https://lumora-8022.myshopify.com" class="btn-gold">Commander maintenant →</a>
@@ -428,7 +466,7 @@ footer{background:#0A0805;border-top:1px solid rgba(232,162,80,.07);padding:1.8r
     <span class="section-label" style="justify-content:center;display:block">Offre limitée</span>
     <h2 class="cta-title">Offre-toi le coucher<br>de soleil que tu <em>mérites</em></h2>
     <div class="divider"></div>
-    <span class="cta-price">CHF 34.90</span>
+    <div style="margin-bottom:.5rem"><span style="font-family:Cormorant Garamond,serif;font-size:1.2rem;text-decoration:line-through;opacity:.35">CHF 59.90</span> <span class="price-badge">-42%</span></div><span class="cta-price">CHF 34.90 <span style="font-size:1.2rem;opacity:.5">/ €36.90</span></span>
     <a href="https://lumora-8022.myshopify.com" class="btn-gold" style="font-size:.95rem;padding:.85rem 2.5rem">Commander ma Lumora →</a>
     <div class="guarantees">
       <span>🔒 Paiement sécurisé</span>
@@ -499,5 +537,23 @@ function toggleMenu(){
   document.getElementById('mobileMenu').classList.toggle('open');
 }
 </script>
+
+<!-- EXIT INTENT POPUP -->
+<div id="exit-popup">
+  <div class="popup-box">
+    <button class="popup-close" onclick="closePopup()">✕</button>
+    <span class="popup-sun">🌅</span>
+    <h3 class="popup-title">Attends !<br>Une <em>offre exclusive</em><br>t'attend.</h3>
+    <p class="popup-subtitle">Tu es à deux clics d'un coucher de soleil dans ta chambre. Profite de notre prix de lancement aujourd'hui.</p>
+    <div class="popup-price-row">
+      <span class="popup-original">CHF 59.90</span>
+      <span class="popup-price">CHF 34.90</span>
+      <span class="popup-badge">-42%</span>
+    </div>
+    <p class="popup-timer">⏱ Offre valable <span id="timer">09:59</span> — Livraison gratuite incluse</p>
+    <a href="https://lumora-8022.myshopify.com" class="btn-gold popup-cta">Je commande maintenant →</a>
+    <span class="popup-skip" onclick="closePopup()">Non merci, je préfère payer plus cher</span>
+  </div>
+</div>
 </body>
 </html>
