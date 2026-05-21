@@ -37,18 +37,7 @@ body{background:#0A0805;color:#F0E8D8;font-family:'DM Sans',sans-serif;font-weig
 #stock-bar .close-bar{background:none;border:none;color:rgba(240,232,216,.3);font-size:1rem;cursor:pointer;padding:0 0 0 .5rem;transition:color .2s}
 #stock-bar .close-bar:hover{color:#E8A250}
 
-/* ── NOTIFICATION SOCIALE ── */
-#social-notif{
-  position:fixed;bottom:70px;left:1.5rem;z-index:799;
-  background:rgba(13,10,6,0.95);border:1px solid rgba(232,162,80,0.2);
-  padding:.8rem 1.2rem;max-width:260px;
-  transform:translateX(-120%);transition:transform .4s ease;
-  display:flex;align-items:center;gap:.8rem;
-}
-#social-notif.show{transform:translateX(0)}
-.notif-icon{font-size:1.3rem}
-.notif-text{font-size:.75rem;line-height:1.5;opacity:.75}
-.notif-text strong{color:#E8A250;opacity:1}
+
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(10,8,5,0.8);backdrop-filter:blur(16px);border-bottom:1px solid rgba(232,162,80,0.08)}
@@ -255,7 +244,7 @@ footer{background:#0A0805;border-top:1px solid rgba(232,162,80,.07);padding:1.8r
   .section-pad{padding:4rem 0}
   .container{padding:0 1.5rem}
   footer{flex-direction:column;text-align:center}
-  #social-notif{bottom:80px;left:.8rem;max-width:220px}
+
   .popup-box{padding:2.2rem 1.5rem}
   .popup-title{font-size:1.6rem}
 }
@@ -279,11 +268,7 @@ footer{background:#0A0805;border-top:1px solid rgba(232,162,80,.07);padding:1.8r
   <button class="close-bar" onclick="closeStockBar()">✕</button>
 </div>
 
-<!-- NOTIFICATION SOCIALE -->
-<div id="social-notif">
-  <span class="notif-icon">👁</span>
-  <div class="notif-text"><strong id="viewer-count">4</strong> personnes regardent ce produit en ce moment</div>
-</div>
+
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
@@ -644,17 +629,7 @@ function toggleMenu(){
 setTimeout(()=>{document.getElementById('stock-bar').classList.add('show')}, 3000);
 function closeStockBar(){document.getElementById('stock-bar').classList.remove('show')}
 
-// ── NOTIFICATION SOCIALE ──
-const viewers=[3,4,5,6,7];
-function showNotif(){
-  const n=document.getElementById('social-notif');
-  const v=viewers[Math.floor(Math.random()*viewers.length)];
-  document.getElementById('viewer-count').textContent=v;
-  n.classList.add('show');
-  setTimeout(()=>n.classList.remove('show'), 4000);
-}
-setTimeout(showNotif, 8000);
-setInterval(showNotif, 25000);
+
 
 // ── POPUP EXIT INTENT ──
 let popupShown=false;
