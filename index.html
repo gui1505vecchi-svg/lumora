@@ -9,24 +9,12 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%}
 body{background:#0A0805;color:#F0E8D8;font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;position:relative;width:100%}
-
-/* CURSOR */
 @media(hover:hover){
   #cursor-dot{position:fixed;width:6px;height:6px;background:#E8A250;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
   #cursor-ring{position:fixed;width:30px;height:30px;border:1px solid rgba(232,162,80,0.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%)}
 }
-
-/* PARTICLES */
 #stars-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
-
-/* ── BARRE STOCK FLOTTANTE ── */
-#stock-bar{
-  position:fixed;bottom:0;left:0;right:0;z-index:800;
-  background:rgba(13,10,6,0.97);border-top:1px solid rgba(232,162,80,0.2);
-  display:flex;align-items:center;justify-content:center;gap:1.5rem;
-  padding:.75rem 1.5rem;flex-wrap:wrap;
-  transform:translateY(100%);transition:transform .4s ease;
-}
+#stock-bar{position:fixed;bottom:0;left:0;right:0;z-index:800;background:rgba(13,10,6,0.97);border-top:1px solid rgba(232,162,80,0.2);display:flex;align-items:center;justify-content:center;gap:1.5rem;padding:.75rem 1.5rem;flex-wrap:wrap;transform:translateY(100%);transition:transform .4s ease}
 #stock-bar.show{transform:translateY(0)}
 .stock-pulse{width:8px;height:8px;background:#E8A250;border-radius:50%;animation:pulse-dot 1.4s infinite}
 @keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(232,162,80,.5)}50%{box-shadow:0 0 0 6px rgba(232,162,80,0)}}
@@ -36,10 +24,6 @@ body{background:#0A0805;color:#F0E8D8;font-family:'DM Sans',sans-serif;font-weig
 .stock-cta-btn:hover{background:#E8A250;color:#0A0805}
 #stock-bar .close-bar{background:none;border:none;color:rgba(240,232,216,.3);font-size:1rem;cursor:pointer;padding:0 0 0 .5rem;transition:color .2s}
 #stock-bar .close-bar:hover{color:#E8A250}
-
-
-
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(10,8,5,0.8);backdrop-filter:blur(16px);border-bottom:1px solid rgba(232,162,80,0.08)}
 .nav-logo{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:1.3rem;letter-spacing:0.3em;color:#E8A250;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:1px}
 .nav-links{display:flex;align-items:center;gap:2rem}
@@ -54,8 +38,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:#F0E8D8;text-decoration:none;letter-spacing:.1em;transition:color .2s}
 .mobile-menu a:hover{color:#E8A250}
 .mobile-menu .close-btn{position:absolute;top:1.5rem;right:2rem;font-size:1.5rem;color:#E8A250;cursor:none;background:none;border:none}
-
-/* HERO */
 #hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 5rem;position:relative;z-index:1}
 .hero-eyebrow{font-size:.7rem;letter-spacing:.28em;color:#E8A250;opacity:.8;margin-bottom:1.5rem;text-transform:uppercase}
 .hero-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(3rem,8vw,6.5rem);line-height:1.02;margin-bottom:1.2rem}
@@ -66,18 +48,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .btn-gold:hover{background:#F5C87A;transform:translateY(-2px)}
 .btn-outline{display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(232,162,80,.5);color:#E8A250;padding:.75rem 2rem;font-size:.88rem;font-weight:300;letter-spacing:.06em;text-decoration:none;transition:background .2s,color .2s;cursor:none}
 .btn-outline:hover{background:#E8A250;color:#0A0805}
-
-/* URGENCY ROW */
 .urgency-row{display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:1rem;font-size:.75rem;opacity:.55;letter-spacing:.06em}
 .urgency-item{display:flex;align-items:center;gap:.4rem}
-
-/* PHOTO FRAME */
 .photo-frame{position:relative;overflow:hidden;border:1px solid rgba(232,162,80,0.12)}
 .photo-frame img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
 .photo-frame:hover img{transform:scale(1.03)}
 .hero-photo-frame{max-width:860px;width:100%;margin:0 auto;height:clamp(300px,50vw,520px)}
-
-/* SECTIONS */
 section{position:relative;z-index:1}
 .container{max-width:1100px;margin:0 auto;padding:0 2rem}
 .section-pad{padding:6rem 0}
@@ -85,8 +61,6 @@ section{position:relative;z-index:1}
 .section-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2rem,4vw,2.8rem);line-height:1.15;margin-bottom:1rem}
 .section-title em{font-style:italic;color:#E8A250}
 .section-header{text-align:center;margin-bottom:3.5rem}
-
-/* PRODUIT */
 #produit{background:#0D0A06}
 .produit-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
 .produit-photo-frame{height:clamp(350px,45vw,520px)}
@@ -101,16 +75,12 @@ section{position:relative;z-index:1}
 .price-free{font-size:.78rem;opacity:.42}
 .price-original{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;text-decoration:line-through;opacity:.4;margin-right:.3rem}
 .price-badge{background:#E8A250;color:#0A0805;font-size:.68rem;font-weight:500;padding:.2rem .6rem;letter-spacing:.06em;vertical-align:middle;margin-left:.4rem}
-
-/* STOCK INDICATOR */
 .stock-indicator{margin-bottom:1.5rem}
 .stock-label{font-size:.75rem;letter-spacing:.06em;opacity:.5;margin-bottom:.5rem;display:block}
 .stock-bar-wrap{height:3px;background:rgba(232,162,80,.12);border-radius:2px;overflow:hidden;margin-bottom:.4rem}
 .stock-fill{height:100%;width:22%;background:linear-gradient(90deg,#E8A250,#F5C87A);border-radius:2px;animation:stock-anim 2s ease forwards}
 @keyframes stock-anim{from{width:0}to{width:22%}}
 .stock-info{font-size:.72rem;color:#E8A250;opacity:.75;letter-spacing:.06em}
-
-/* BIENFAITS */
 #bienfaits{background:#0A0805}
 .benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid rgba(232,162,80,.08)}
 .benefit-item{padding:1.8rem;border:1px solid rgba(232,162,80,.06);transition:background .25s;cursor:default}
@@ -118,8 +88,6 @@ section{position:relative;z-index:1}
 .benefit-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:rgba(232,162,80,.15);display:block;margin-bottom:.7rem}
 .benefit-title{font-size:.95rem;font-weight:500;margin-bottom:.4rem}
 .benefit-desc{font-size:.82rem;line-height:1.75;opacity:.5}
-
-/* COULEURS */
 #couleurs{background:#0D0A06}
 .colors-intro{max-width:580px;margin:0 auto 3.5rem;text-align:center}
 .colors-intro p{font-size:.92rem;line-height:1.8;opacity:.6;margin-top:.8rem}
@@ -127,8 +95,6 @@ section{position:relative;z-index:1}
 .color-card{position:relative;overflow:hidden}
 .color-card .photo-frame{height:clamp(240px,30vw,380px)}
 .color-badge{position:absolute;bottom:1rem;left:1rem;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .8rem;border:1px solid rgba(255,255,255,.2);background:rgba(10,8,5,.6);backdrop-filter:blur(4px);color:#F0E8D8}
-
-/* SCIENCE */
 #science{background:#0A0805}
 .science-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
 .stats-big{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
@@ -141,8 +107,6 @@ section{position:relative;z-index:1}
 .science-icon{width:34px;height:34px;min-width:34px;border:1px solid rgba(232,162,80,.2);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
 .science-point h4{font-size:.88rem;font-weight:500;margin-bottom:.3rem}
 .science-point p{font-size:.8rem;opacity:.5;line-height:1.65}
-
-/* AVIS */
 #avis{background:#0D0A06}
 .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
 .review-card{border:1px solid rgba(232,162,80,.08);padding:1.8rem;transition:border-color .2s,transform .2s}
@@ -152,8 +116,6 @@ section{position:relative;z-index:1}
 .review-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:1rem;line-height:1.7;opacity:.82;margin-bottom:1rem}
 .review-author{font-size:.75rem;opacity:.38;letter-spacing:.05em}
 .review-verified{font-size:.68rem;color:#E8A250;opacity:.6;margin-top:.3rem;letter-spacing:.05em}
-
-/* FAQ */
 #faq{background:#0A0805}
 .faq-inner{max-width:680px;margin:0 auto}
 .faq-item{border-bottom:1px solid rgba(232,162,80,.08)}
@@ -163,8 +125,6 @@ section{position:relative;z-index:1}
 .faq-icon.open{transform:rotate(45deg)}
 .faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease;font-size:.85rem;line-height:1.85;opacity:.55}
 .faq-answer.open{max-height:220px;padding-bottom:1.2rem}
-
-/* CTA FINAL */
 #cta-final{background:#0D0A06;padding:6rem 2rem;text-align:center;position:relative;z-index:1}
 .cta-sun-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(255,140,30,.08) 0%,transparent 70%);border-radius:50%;pointer-events:none}
 .cta-inner{position:relative;z-index:2;max-width:600px;margin:0 auto}
@@ -172,44 +132,20 @@ section{position:relative;z-index:1}
 .cta-title em{font-style:italic;color:#E8A250}
 .cta-price{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:#E8A250;display:block;margin-bottom:2rem}
 .guarantees{display:flex;gap:2rem;margin-top:2rem;opacity:.45;font-size:.75rem;letter-spacing:.07em;flex-wrap:wrap;justify-content:center}
-
-/* FOOTER */
 footer{background:#0A0805;border-top:1px solid rgba(232,162,80,.07);padding:1.8rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;position:relative;z-index:1}
 .footer-logo{font-family:'Cormorant Garamond',serif;font-weight:300;letter-spacing:.3em;color:#E8A250;font-size:1rem}
 .footer-copy{font-size:.73rem;opacity:.28;letter-spacing:.04em}
-
-/* REVEAL */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
-
-/* DIVIDER */
 .divider{width:40px;height:1px;background:rgba(232,162,80,.3);margin:1.2rem auto}
-
-/* ======================== POPUP EXIT INTENT ======================== */
-#exit-popup{
-  position:fixed;inset:0;z-index:9000;
-  display:flex;align-items:center;justify-content:center;
-  background:rgba(10,8,5,.88);backdrop-filter:blur(10px);
-  opacity:0;pointer-events:none;transition:opacity .35s ease;
-}
+#exit-popup{position:fixed;inset:0;z-index:9000;display:flex;align-items:center;justify-content:center;background:rgba(10,8,5,.88);backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .35s ease}
 #exit-popup.show{opacity:1;pointer-events:all}
-.popup-box{
-  background:#0D0A06;border:1px solid rgba(232,162,80,.3);
-  max-width:480px;width:90%;padding:3rem 2.5rem;text-align:center;
-  position:relative;animation:popup-in .35s ease;
-}
+.popup-box{background:#0D0A06;border:1px solid rgba(232,162,80,.3);max-width:480px;width:90%;padding:3rem 2.5rem;text-align:center;position:relative;animation:popup-in .35s ease}
 @keyframes popup-in{from{transform:scale(.94) translateY(16px);opacity:0}to{transform:scale(1) translateY(0);opacity:1}}
-.popup-close{
-  position:absolute;top:1rem;right:1.2rem;
-  font-size:1.2rem;color:rgba(240,232,216,.4);
-  cursor:pointer;background:none;border:none;transition:color .2s;
-}
+.popup-close{position:absolute;top:1rem;right:1.2rem;font-size:1.2rem;color:rgba(240,232,216,.4);cursor:pointer;background:none;border:none;transition:color .2s}
 .popup-close:hover{color:#E8A250}
 .popup-sun{font-size:2.2rem;margin-bottom:1rem;display:block}
-.popup-title{
-  font-family:'Cormorant Garamond',serif;font-weight:300;
-  font-size:2rem;line-height:1.15;margin-bottom:.8rem;
-}
+.popup-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:2rem;line-height:1.15;margin-bottom:.8rem}
 .popup-title em{font-style:italic;color:#E8A250}
 .popup-subtitle{font-size:.88rem;opacity:.6;line-height:1.7;margin-bottom:.5rem}
 .popup-price-row{margin:1.2rem 0}
@@ -222,8 +158,6 @@ footer{background:#0A0805;border-top:1px solid rgba(232,162,80,.07);padding:1.8r
 .popup-skip{display:block;margin-top:.5rem;font-size:.72rem;opacity:.28;cursor:pointer;transition:opacity .2s;text-decoration:underline}
 .popup-skip:hover{opacity:.5}
 .popup-guarantee{font-size:.7rem;opacity:.35;margin-top:.8rem;letter-spacing:.06em}
-
-/* ======================== MOBILE ======================== */
 @media(max-width:768px){
   nav{padding:.9rem 1.5rem}
   .nav-links{display:none}
@@ -244,7 +178,6 @@ footer{background:#0A0805;border-top:1px solid rgba(232,162,80,.07);padding:1.8r
   .section-pad{padding:4rem 0}
   .container{padding:0 1.5rem}
   footer{flex-direction:column;text-align:center}
-
   .popup-box{padding:2.2rem 1.5rem}
   .popup-title{font-size:1.6rem}
 }
@@ -260,27 +193,22 @@ footer{background:#0A0805;border-top:1px solid rgba(232,162,80,.07);padding:1.8r
 <div id="cursor-ring"></div>
 <canvas id="stars-canvas"></canvas>
 
-<!-- BARRE STOCK FLOTTANTE -->
 <div id="stock-bar">
   <div class="stock-pulse"></div>
   <span class="stock-text">⚡ Plus que <strong>7 lampes</strong> disponibles au prix de lancement</span>
-  <a href="https://lumora-8022.myshopify.com/cart/61829767037258:1?checkout" class="stock-cta-btn">Commander →</a>
+  <a href="https://lumora-8022.myshopify.com/products/smart-bluetooth-night-light-rainbow-sunset-projector-lamp-for-home-coffe-shop-background-wall-decoration-atmosphere-table-lamp" class="stock-cta-btn">Commander →</a>
   <button class="close-bar" onclick="closeStockBar()">✕</button>
 </div>
 
-
-
-<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <button class="close-btn" onclick="toggleMenu()">✕</button>
   <a href="#produit" onclick="toggleMenu()">Produit</a>
   <a href="#bienfaits" onclick="toggleMenu()">Bienfaits</a>
   <a href="#couleurs" onclick="toggleMenu()">16 Couleurs</a>
   <a href="#avis" onclick="toggleMenu()">Avis</a>
-  <a href="https://lumora-8022.myshopify.com/cart/61829767037258:1?checkout" class="btn-gold" style="font-size:1rem;margin-top:1rem">Commander</a>
+  <a href="https://lumora-8022.myshopify.com/products/smart-bluetooth-night-light-rainbow-sunset-projector-lamp-for-home-coffe-shop-background-wall-decoration-atmosphere-table-lamp" class="btn-gold" style="font-size:1rem;margin-top:1rem">Commander</a>
 </div>
 
-<!-- NAV -->
 <nav>
   <a href="#" class="nav-logo"><span style="font-size:.8rem">☀</span>LUMORA</a>
   <div class="nav-links">
@@ -288,14 +216,13 @@ footer{background:#0A0805;border-top:1px solid rgba(232,162,80,.07);padding:1.8r
     <a href="#bienfaits">Bienfaits</a>
     <a href="#couleurs">16 Couleurs</a>
     <a href="#avis">Avis</a>
-    <a href="https://lumora-8022.myshopify.com/cart/61829767037258:1?checkout" class="nav-cta">Commander</a>
+    <a href="https://lumora-8022.myshopify.com/products/smart-bluetooth-night-light-rainbow-sunset-projector-lamp-for-home-coffe-shop-background-wall-decoration-atmosphere-table-lamp" class="nav-cta">Commander</a>
   </div>
   <div class="nav-hamburger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </div>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <p class="hero-eyebrow">Bien-être · Lumière · Sérénité</p>
   <h1 class="hero-title">Ton coucher<br>de <em>soleil</em><br>personnel</h1>
@@ -306,7 +233,7 @@ footer{background:#0A0805;border-top:1px solid rgba(232,162,80,.07);padding:1.8r
     <span class="urgency-item">⚡ Plus que 7 en stock</span>
   </div>
   <div class="hero-btns">
-    <a href="https://lumora-8022.myshopify.com/cart/61829767037258:1?checkout" class="btn-gold"><span style="text-decoration:line-through;opacity:.5;font-size:.8em;margin-right:.3rem">59.90</span> CHF 34.90 →</a>
+    <a href="https://lumora-8022.myshopify.com/products/smart-bluetooth-night-light-rainbow-sunset-projector-lamp-for-home-coffe-shop-background-wall-decoration-atmosphere-table-lamp" class="btn-gold"><span style="text-decoration:line-through;opacity:.5;font-size:.8em;margin-right:.3rem">59.90</span> CHF 34.90 →</a>
     <a href="#produit" class="btn-outline">Découvrir ↓</a>
   </div>
   <div class="hero-photo-frame photo-frame reveal">
@@ -314,7 +241,6 @@ footer{background:#0A0805;border-top:1px solid rgba(232,162,80,.07);padding:1.8r
   </div>
 </section>
 
-<!-- PRODUIT -->
 <section id="produit" class="section-pad">
   <div class="container">
     <div class="produit-grid">
@@ -333,7 +259,6 @@ footer{background:#0A0805;border-top:1px solid rgba(232,162,80,.07);padding:1.8r
           <div class="spec-item"><span class="spec-value">5W</span><span class="spec-label">Consommation</span></div>
           <div class="spec-item"><span class="spec-value">∞</span><span class="spec-label">Ambiances</span></div>
         </div>
-        <!-- STOCK INDICATOR -->
         <div class="stock-indicator">
           <span class="stock-label">Disponibilité — Prix de lancement</span>
           <div class="stock-bar-wrap"><div class="stock-fill"></div></div>
@@ -345,13 +270,12 @@ footer{background:#0A0805;border-top:1px solid rgba(232,162,80,.07);padding:1.8r
           <span class="price-badge">-42%</span>
           <span class="price-free">· Livraison gratuite</span>
         </div>
-        <a href="https://lumora-8022.myshopify.com/cart/61829767037258:1?checkout" class="btn-gold">Commander maintenant →</a>
+        <a href="https://lumora-8022.myshopify.com/products/smart-bluetooth-night-light-rainbow-sunset-projector-lamp-for-home-coffe-shop-background-wall-decoration-atmosphere-table-lamp" class="btn-gold">Commander maintenant →</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- BIENFAITS -->
 <section id="bienfaits" class="section-pad">
   <div class="container">
     <div class="section-header reveal">
@@ -369,7 +293,6 @@ footer{background:#0A0805;border-top:1px solid rgba(232,162,80,.07);padding:1.8r
   </div>
 </section>
 
-<!-- 16 COULEURS -->
 <section id="couleurs" class="section-pad">
   <div class="container">
     <div class="colors-intro reveal">
@@ -378,47 +301,16 @@ footer{background:#0A0805;border-top:1px solid rgba(232,162,80,.07);padding:1.8r
       <p>Du coucher de soleil chaleureux au bleu apaisant — Lumora s'adapte à chacun de tes états d'âme.</p>
     </div>
     <div class="colors-grid">
-      <div class="color-card reveal">
-        <div class="photo-frame" style="height:clamp(240px,30vw,380px)">
-          <img src="photo-produit.jpeg" alt="Lumora — ambiance orange coucher de soleil">
-        </div>
-        <span class="color-badge">🟠 Coucher de soleil</span>
-      </div>
-      <div class="color-card reveal">
-        <div class="photo-frame" style="height:clamp(240px,30vw,380px)">
-          <img src="photo-rose.png" alt="Lumora — ambiance rose">
-        </div>
-        <span class="color-badge">🌸 Rose douceur</span>
-      </div>
-      <div class="color-card reveal">
-        <div class="photo-frame" style="height:clamp(240px,30vw,380px)">
-          <img src="photo-violet.png" alt="Lumora — ambiance violette">
-        </div>
-        <span class="color-badge">💜 Violet mystère</span>
-      </div>
-      <div class="color-card reveal">
-        <div class="photo-frame" style="height:clamp(240px,30vw,380px)">
-          <img src="photo-bleu.png" alt="Lumora — ambiance bleue zen">
-        </div>
-        <span class="color-badge">💙 Bleu sérénité</span>
-      </div>
-      <div class="color-card reveal">
-        <div class="photo-frame" style="height:clamp(240px,30vw,380px)">
-          <img src="photo-blanc.png" alt="Lumora — ambiance blanc or">
-        </div>
-        <span class="color-badge">🤍 Blanc or élégance</span>
-      </div>
-      <div class="color-card reveal">
-        <div class="photo-frame" style="height:clamp(240px,30vw,380px)">
-          <img src="photo-rouge.png" alt="Lumora — ambiance rouge passion">
-        </div>
-        <span class="color-badge">🔴 Rouge passion</span>
-      </div>
+      <div class="color-card reveal"><div class="photo-frame" style="height:clamp(240px,30vw,380px)"><img src="photo-produit.jpeg" alt="Lumora — ambiance orange coucher de soleil"></div><span class="color-badge">🟠 Coucher de soleil</span></div>
+      <div class="color-card reveal"><div class="photo-frame" style="height:clamp(240px,30vw,380px)"><img src="photo-rose.png" alt="Lumora — ambiance rose"></div><span class="color-badge">🌸 Rose douceur</span></div>
+      <div class="color-card reveal"><div class="photo-frame" style="height:clamp(240px,30vw,380px)"><img src="photo-violet.png" alt="Lumora — ambiance violette"></div><span class="color-badge">💜 Violet mystère</span></div>
+      <div class="color-card reveal"><div class="photo-frame" style="height:clamp(240px,30vw,380px)"><img src="photo-bleu.png" alt="Lumora — ambiance bleue zen"></div><span class="color-badge">💙 Bleu sérénité</span></div>
+      <div class="color-card reveal"><div class="photo-frame" style="height:clamp(240px,30vw,380px)"><img src="photo-blanc.png" alt="Lumora — ambiance blanc or"></div><span class="color-badge">🤍 Blanc or élégance</span></div>
+      <div class="color-card reveal"><div class="photo-frame" style="height:clamp(240px,30vw,380px)"><img src="photo-rouge.png" alt="Lumora — ambiance rouge passion"></div><span class="color-badge">🔴 Rouge passion</span></div>
     </div>
   </div>
 </section>
 
-<!-- SCIENCE -->
 <section id="science" class="section-pad">
   <div class="container">
     <div class="science-grid">
@@ -437,25 +329,15 @@ footer{background:#0A0805;border-top:1px solid rgba(232,162,80,.07);padding:1.8r
         <span class="section-label">La science derrière</span>
         <h2 class="section-title">Ce n'est pas<br>de la magie.<br><em>C'est la lumière.</em></h2>
         <div class="science-points">
-          <div class="science-point">
-            <div class="science-icon">🧠</div>
-            <div><h4>Chromothérapie & cortisol</h4><p>Les longueurs d'onde orange-rouge (590–700nm) inhibent l'axe HPA, réduisant la sécrétion de cortisol et favorisant un état de calme profond.</p></div>
-          </div>
-          <div class="science-point">
-            <div class="science-icon">🌙</div>
-            <div><h4>Mélatonine & sommeil</h4><p>Contrairement aux écrans LED bleutés, la lumière ambrée de Lumora accompagne naturellement la production de mélatonine.</p></div>
-          </div>
-          <div class="science-point">
-            <div class="science-icon">🔄</div>
-            <div><h4>Ancrage comportemental</h4><p>Répété chaque soir, le signal visuel crée un conditionnement : ton corps apprend à se déconnecter dès que la lumière s'allume.</p></div>
-          </div>
+          <div class="science-point"><div class="science-icon">🧠</div><div><h4>Chromothérapie & cortisol</h4><p>Les longueurs d'onde orange-rouge (590–700nm) inhibent l'axe HPA, réduisant la sécrétion de cortisol et favorisant un état de calme profond.</p></div></div>
+          <div class="science-point"><div class="science-icon">🌙</div><div><h4>Mélatonine & sommeil</h4><p>Contrairement aux écrans LED bleutés, la lumière ambrée de Lumora accompagne naturellement la production de mélatonine.</p></div></div>
+          <div class="science-point"><div class="science-icon">🔄</div><div><h4>Ancrage comportemental</h4><p>Répété chaque soir, le signal visuel crée un conditionnement : ton corps apprend à se déconnecter dès que la lumière s'allume.</p></div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- AVIS -->
 <section id="avis" class="section-pad">
   <div class="container">
     <div class="section-header reveal">
@@ -463,53 +345,16 @@ footer{background:#0A0805;border-top:1px solid rgba(232,162,80,.07);padding:1.8r
       <h2 class="section-title">Ce qu'ils en <em>disent</em></h2>
     </div>
     <div class="reviews-grid">
-      <div class="review-card reveal">
-        <div class="stars">★★★★★</div>
-        <div class="review-quote-mark">"</div>
-        <p class="review-text">J'allumais mon téléphone pour me détendre avant de dormir. Maintenant j'allume Lumora. La différence est incomparable — je m'endors en 10 minutes.</p>
-        <p class="review-author">Camille R. — Paris</p>
-        <p class="review-verified">✓ Achat vérifié</p>
-      </div>
-      <div class="review-card reveal">
-        <div class="stars">★★★★★</div>
-        <div class="review-quote-mark">"</div>
-        <p class="review-text">Sceptique au départ. Aujourd'hui c'est le premier objet que j'allume en rentrant. Ma femme en a commandé une deuxième pour le bureau.</p>
-        <p class="review-author">Thomas K. — Lyon</p>
-        <p class="review-verified">✓ Achat vérifié</p>
-      </div>
-      <div class="review-card reveal">
-        <div class="stars">★★★★★</div>
-        <div class="review-quote-mark">"</div>
-        <p class="review-text">Je fais de la méditation et le manque d'ambiance était un frein. Lumora a transformé ma pratique. Exactement ce qu'il fallait.</p>
-        <p class="review-author">Léa M. — Genève</p>
-        <p class="review-verified">✓ Achat vérifié</p>
-      </div>
-      <div class="review-card reveal">
-        <div class="stars">★★★★★</div>
-        <div class="review-quote-mark">"</div>
-        <p class="review-text">Cadeau pour ma sœur qui avait du mal à dormir. Elle m'a rappelé le lendemain pour me remercier. Résultat immédiat, vraiment bluffant.</p>
-        <p class="review-author">Marc D. — Bruxelles</p>
-        <p class="review-verified">✓ Achat vérifié</p>
-      </div>
-      <div class="review-card reveal">
-        <div class="stars">★★★★★</div>
-        <div class="review-quote-mark">"</div>
-        <p class="review-text">La couleur rouge le soir pour décompresser, le bleu pour méditer le matin. J'utilise au moins 4 couleurs différentes selon mon humeur.</p>
-        <p class="review-author">Sophie L. — Lausanne</p>
-        <p class="review-verified">✓ Achat vérifié</p>
-      </div>
-      <div class="review-card reveal">
-        <div class="stars">★★★★★</div>
-        <div class="review-quote-mark">"</div>
-        <p class="review-text">Prix imbattable pour la qualité. La lumière est douce, la télécommande pratique. Mon appart a l'air d'un spa 5 étoiles maintenant.</p>
-        <p class="review-author">Antoine B. — Bordeaux</p>
-        <p class="review-verified">✓ Achat vérifié</p>
-      </div>
+      <div class="review-card reveal"><div class="stars">★★★★★</div><div class="review-quote-mark">"</div><p class="review-text">J'allumais mon téléphone pour me détendre avant de dormir. Maintenant j'allume Lumora. La différence est incomparable — je m'endors en 10 minutes.</p><p class="review-author">Camille R. — Paris</p><p class="review-verified">✓ Achat vérifié</p></div>
+      <div class="review-card reveal"><div class="stars">★★★★★</div><div class="review-quote-mark">"</div><p class="review-text">Sceptique au départ. Aujourd'hui c'est le premier objet que j'allume en rentrant. Ma femme en a commandé une deuxième pour le bureau.</p><p class="review-author">Thomas K. — Lyon</p><p class="review-verified">✓ Achat vérifié</p></div>
+      <div class="review-card reveal"><div class="stars">★★★★★</div><div class="review-quote-mark">"</div><p class="review-text">Je fais de la méditation et le manque d'ambiance était un frein. Lumora a transformé ma pratique. Exactement ce qu'il fallait.</p><p class="review-author">Léa M. — Genève</p><p class="review-verified">✓ Achat vérifié</p></div>
+      <div class="review-card reveal"><div class="stars">★★★★★</div><div class="review-quote-mark">"</div><p class="review-text">Cadeau pour ma sœur qui avait du mal à dormir. Elle m'a rappelé le lendemain pour me remercier. Résultat immédiat, vraiment bluffant.</p><p class="review-author">Marc D. — Bruxelles</p><p class="review-verified">✓ Achat vérifié</p></div>
+      <div class="review-card reveal"><div class="stars">★★★★★</div><div class="review-quote-mark">"</div><p class="review-text">La couleur rouge le soir pour décompresser, le bleu pour méditer le matin. J'utilise au moins 4 couleurs différentes selon mon humeur.</p><p class="review-author">Sophie L. — Lausanne</p><p class="review-verified">✓ Achat vérifié</p></div>
+      <div class="review-card reveal"><div class="stars">★★★★★</div><div class="review-quote-mark">"</div><p class="review-text">Prix imbattable pour la qualité. La lumière est douce, la télécommande pratique. Mon appart a l'air d'un spa 5 étoiles maintenant.</p><p class="review-author">Antoine B. — Bordeaux</p><p class="review-verified">✓ Achat vérifié</p></div>
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
 <section id="faq" class="section-pad">
   <div class="container">
     <div class="section-header reveal">
@@ -527,7 +372,6 @@ footer{background:#0A0805;border-top:1px solid rgba(232,162,80,.07);padding:1.8r
   </div>
 </section>
 
-<!-- CTA FINAL -->
 <section id="cta-final">
   <div class="cta-sun-bg"></div>
   <div class="cta-inner reveal">
@@ -536,7 +380,7 @@ footer{background:#0A0805;border-top:1px solid rgba(232,162,80,.07);padding:1.8r
     <div class="divider"></div>
     <div style="margin-bottom:.5rem"><span style="font-family:Cormorant Garamond,serif;font-size:1.2rem;text-decoration:line-through;opacity:.35">CHF 59.90</span> <span class="price-badge">-42%</span></div>
     <span class="cta-price">CHF 34.90 <span style="font-size:1.2rem;opacity:.5">/ €36.90</span></span>
-    <a href="https://lumora-8022.myshopify.com/cart/61829767037258:1?checkout" class="btn-gold" style="font-size:.95rem;padding:.85rem 2.5rem">Commander ma Lumora →</a>
+    <a href="https://lumora-8022.myshopify.com/products/smart-bluetooth-night-light-rainbow-sunset-projector-lamp-for-home-coffe-shop-background-wall-decoration-atmosphere-table-lamp" class="btn-gold" style="font-size:.95rem;padding:.85rem 2.5rem">Commander ma Lumora →</a>
     <div class="guarantees">
       <span>🔒 Paiement sécurisé</span>
       <span>↩ 30j remboursé</span>
@@ -550,7 +394,6 @@ footer{background:#0A0805;border-top:1px solid rgba(232,162,80,.07);padding:1.8r
   <p class="footer-copy">© 2025 Lumora · Bien-être par la lumière · Suisse</p>
 </footer>
 
-<!-- EXIT INTENT POPUP -->
 <div id="exit-popup">
   <div class="popup-box">
     <button class="popup-close" onclick="closePopup()">✕</button>
@@ -563,119 +406,41 @@ footer{background:#0A0805;border-top:1px solid rgba(232,162,80,.07);padding:1.8r
       <span class="popup-badge">-42%</span>
     </div>
     <p class="popup-timer">⏱ Offre valable encore <span id="timer">10:00</span> — Livraison gratuite incluse</p>
-    <a href="https://lumora-8022.myshopify.com/cart/61829767037258:1?checkout" class="btn-gold popup-cta">Je commande maintenant →</a>
+    <a href="https://lumora-8022.myshopify.com/products/smart-bluetooth-night-light-rainbow-sunset-projector-lamp-for-home-coffe-shop-background-wall-decoration-atmosphere-table-lamp" class="btn-gold popup-cta">Je commande maintenant →</a>
     <span class="popup-skip" onclick="closePopup()">Non merci, je préfère payer plus cher</span>
     <p class="popup-guarantee">🔒 Paiement sécurisé · ↩ 30j remboursé</p>
   </div>
 </div>
 
 <script>
-// ── CURSOR ──
 const dot=document.getElementById('cursor-dot');
 const ring=document.getElementById('cursor-ring');
-if(dot&&ring){
-  let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
-  (function animRing(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)})();
-}
-
-// ── PARTICLES ──
+if(dot&&ring){let mx=0,my=0,rx=0,ry=0;document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});(function animRing(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)})()}
 const canvas=document.getElementById('stars-canvas');
 const ctx=canvas.getContext('2d');
 let particles=[];
 const WARM=['#E8A250','#F5C87A','#B07830','#FF9640','#F0E8D8'];
-function initP(){
-  canvas.width=window.innerWidth;canvas.height=window.innerHeight;particles=[];
-  for(let i=0;i<140;i++){
-    particles.push({x:Math.random()*canvas.width,oy:Math.random()*canvas.height,size:Math.random()*.9+.2,alpha:Math.random()*.45+.05,spd:Math.random()*.01+.003,dir:Math.random()<.5?1:-1,type:Math.random()<.08?'cross':'dot',color:WARM[Math.floor(Math.random()*WARM.length)]});
-  }
-}
+function initP(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;particles=[];for(let i=0;i<140;i++){particles.push({x:Math.random()*canvas.width,oy:Math.random()*canvas.height,size:Math.random()*.9+.2,alpha:Math.random()*.45+.05,spd:Math.random()*.01+.003,dir:Math.random()<.5?1:-1,type:Math.random()<.08?'cross':'dot',color:WARM[Math.floor(Math.random()*WARM.length)]})}}
 let sy=0;
 window.addEventListener('scroll',()=>{sy=window.scrollY},{passive:true});
-function drawP(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  const par=sy*.07;
-  particles.forEach(p=>{
-    p.alpha+=p.spd*p.dir;
-    if(p.alpha>.65||p.alpha<.04)p.dir*=-1;
-    const py=(p.oy-par%canvas.height+canvas.height*2)%canvas.height;
-    ctx.globalAlpha=p.alpha;ctx.fillStyle=p.color;ctx.strokeStyle=p.color;
-    if(p.type==='cross'){ctx.lineWidth=p.size*.4;ctx.beginPath();ctx.moveTo(p.x-p.size*2,py);ctx.lineTo(p.x+p.size*2,py);ctx.stroke();ctx.beginPath();ctx.moveTo(p.x,py-p.size*2);ctx.lineTo(p.x,py+p.size*2);ctx.stroke();}
-    else{ctx.beginPath();ctx.arc(p.x,py,p.size,0,Math.PI*2);ctx.fill()}
-  });
-  ctx.globalAlpha=1;requestAnimationFrame(drawP);
-}
+function drawP(){ctx.clearRect(0,0,canvas.width,canvas.height);const par=sy*.07;particles.forEach(p=>{p.alpha+=p.spd*p.dir;if(p.alpha>.65||p.alpha<.04)p.dir*=-1;const py=(p.oy-par%canvas.height+canvas.height*2)%canvas.height;ctx.globalAlpha=p.alpha;ctx.fillStyle=p.color;ctx.strokeStyle=p.color;if(p.type==='cross'){ctx.lineWidth=p.size*.4;ctx.beginPath();ctx.moveTo(p.x-p.size*2,py);ctx.lineTo(p.x+p.size*2,py);ctx.stroke();ctx.beginPath();ctx.moveTo(p.x,py-p.size*2);ctx.lineTo(p.x,py+p.size*2);ctx.stroke();}else{ctx.beginPath();ctx.arc(p.x,py,p.size,0,Math.PI*2);ctx.fill()}});ctx.globalAlpha=1;requestAnimationFrame(drawP)}
 initP();drawP();
 window.addEventListener('resize',initP);
-
-// ── REVEAL ──
 const reveals=document.querySelectorAll('.reveal');
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.08});
 reveals.forEach(r=>obs.observe(r));
-
-// ── FAQ ──
-function toggleFaq(el){
-  const ans=el.nextElementSibling,icon=el.querySelector('.faq-icon'),open=ans.classList.contains('open');
-  document.querySelectorAll('.faq-answer.open').forEach(a=>{a.classList.remove('open');a.previousElementSibling.querySelector('.faq-icon').classList.remove('open')});
-  if(!open){ans.classList.add('open');icon.classList.add('open')}
-}
-
-// ── MOBILE MENU ──
-function toggleMenu(){
-  document.getElementById('mobileMenu').classList.toggle('open');
-}
-
-// ── STOCK BAR ──
-setTimeout(()=>{document.getElementById('stock-bar').classList.add('show')}, 3000);
+function toggleFaq(el){const ans=el.nextElementSibling,icon=el.querySelector('.faq-icon'),open=ans.classList.contains('open');document.querySelectorAll('.faq-answer.open').forEach(a=>{a.classList.remove('open');a.previousElementSibling.querySelector('.faq-icon').classList.remove('open')});if(!open){ans.classList.add('open');icon.classList.add('open')}}
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+setTimeout(()=>{document.getElementById('stock-bar').classList.add('show')},3000);
 function closeStockBar(){document.getElementById('stock-bar').classList.remove('show')}
-
-
-
-// ── POPUP EXIT INTENT ──
-let popupShown=false;
-let popupTimer=null;
-let seconds=600; // 10 minutes
-
-function showPopup(){
-  if(popupShown)return;
-  popupShown=true;
-  document.getElementById('exit-popup').classList.add('show');
-  startTimer();
-}
-
-function closePopup(){
-  document.getElementById('exit-popup').classList.remove('show');
-  if(popupTimer)clearInterval(popupTimer);
-}
-
-function startTimer(){
-  popupTimer=setInterval(()=>{
-    seconds--;
-    if(seconds<=0){clearInterval(popupTimer);closePopup();return}
-    const m=Math.floor(seconds/60);
-    const s=seconds%60;
-    document.getElementById('timer').textContent=m+':'+(s<10?'0':'')+s;
-  },1000);
-}
-
-// Desktop : exit intent sur mouvement vers le haut
-document.addEventListener('mouseleave',e=>{
-  if(e.clientY<=0) showPopup();
-});
-
-// Mobile : après 40 secondes sur la page
-setTimeout(()=>{
-  if(!popupShown) showPopup();
-}, 40000);
-
-// Scroll : si remonte en haut de la page
+let popupShown=false,popupTimer=null,seconds=600;
+function showPopup(){if(popupShown)return;popupShown=true;document.getElementById('exit-popup').classList.add('show');startTimer()}
+function closePopup(){document.getElementById('exit-popup').classList.remove('show');if(popupTimer)clearInterval(popupTimer)}
+function startTimer(){popupTimer=setInterval(()=>{seconds--;if(seconds<=0){clearInterval(popupTimer);closePopup();return}const m=Math.floor(seconds/60),s=seconds%60;document.getElementById('timer').textContent=m+':'+(s<10?'0':'')+s},1000)}
+document.addEventListener('mouseleave',e=>{if(e.clientY<=0)showPopup()});
+setTimeout(()=>{if(!popupShown)showPopup()},40000);
 let lastScroll=0;
-window.addEventListener('scroll',()=>{
-  const cur=window.scrollY;
-  if(lastScroll>800 && cur<200 && !popupShown) showPopup();
-  lastScroll=cur;
-},{passive:true});
+window.addEventListener('scroll',()=>{const cur=window.scrollY;if(lastScroll>800&&cur<200&&!popupShown)showPopup();lastScroll=cur},{passive:true});
 </script>
-
 </body>
 </html>
